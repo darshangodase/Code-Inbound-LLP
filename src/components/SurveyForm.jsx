@@ -77,6 +77,7 @@ const SurveyForm = ({ showConfirmationDialog }) => {
         <div className="question-number text-right text-lg">
           {currentQuestionIndex + 1}/{totalQuestions}
         </div>
+        
         <div className="question-text text-center my-4 text-lg">
           {questions[currentQuestionIndex].text}
         </div>
