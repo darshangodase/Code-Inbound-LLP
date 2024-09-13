@@ -1,13 +1,7 @@
-import React,{ useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-const SurveyForm=({showConfirmationDialog }) =>{
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-  const [answers, setAnswers] = useState(() => {
-    const savedAnswers = localStorage.getItem("surveyAnswers");
-    return savedAnswers ? JSON.parse(savedAnswers):{};
-  });
-
+const SurveyForm = ({ showConfirmationDialog }) => {
+  
   const questions = [
     {
       id: 1,
@@ -33,31 +27,38 @@ const SurveyForm=({showConfirmationDialog }) =>{
       type: "rating",
       scale: 10,
     },
-    { id: 5, text: "What could we do to improve our service?", type: "text" },
+    {
+      id: 5,
+      text: "What could we do to improve our service?",
+      type: "text",
+    },
   ];
-
   const totalQuestions = questions.length;
+  const[currentQuestionIndex, setCurrentQuestionIndex]=useState(0);
+
+  const [answers, setAnswers] = useState(() => {
+    const savedAnswers = localStorage.getItem("surveyAnswers");
+    return savedAnswers ? JSON.parse(savedAnswers) : {};
+  });
+
 
   const handleNext = () => {
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } 
-    else {
+    } else {
       showConfirmationDialog();
     }
   };
 
-  const handlePrev=() => {
+  const handlePrev = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
 
-  const handleAnswerChange = (questionId, answer) => 
-    {
+  const handleAnswerChange = (questionId, answer) => {
     const updatedAnswers = { ...answers, [questionId]: answer };
     setAnswers(updatedAnswers);
-
     localStorage.setItem("surveyAnswers", JSON.stringify(updatedAnswers));
   };
 
@@ -74,7 +75,7 @@ const SurveyForm=({showConfirmationDialog }) =>{
         <h2 className="text-center text-2xl font-bold mb-4">Customer Survey</h2>
 
         <div className="question-number text-right text-lg">
-           {currentQuestionIndex + 1}/{totalQuestions}
+          {currentQuestionIndex + 1}/{totalQuestions}
         </div>
         <div className="question-text text-center my-4 text-lg">
           {questions[currentQuestionIndex].text}
@@ -83,19 +84,19 @@ const SurveyForm=({showConfirmationDialog }) =>{
         {questions[currentQuestionIndex].type === "rating" && (
           <div className="rating-options flex justify-center space-x-4">
             {[...Array(questions[currentQuestionIndex].scale)].map((_, i) => (
-             <button
-             key={i}
-             className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${
-               answers[questions[currentQuestionIndex].id] === i + 1
-                 ? "bg-red-500 text-white"
-                 : "bg-gray-300 text-black"
-             }`}
-             onClick={() =>
-               handleAnswerChange(questions[currentQuestionIndex].id, i + 1)
-             }
-           >
-             {i + 1}
-             </button>
+              <button
+                key={i}
+                className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold ${
+                  answers[questions[currentQuestionIndex].id] === i + 1
+                    ? "bg-red-500 text-white"
+                    : "bg-gray-300 text-black"
+                }`}
+                onClick={() =>
+                  handleAnswerChange(questions[currentQuestionIndex].id, i + 1)
+                }
+              >
+                {i + 1}
+              </button>
             ))}
           </div>
         )}
@@ -126,7 +127,7 @@ const SurveyForm=({showConfirmationDialog }) =>{
             className="btn bg-pink-500 text-white px-4 py-2 rounded-lg"
             onClick={handleNext}
           >
-            {currentQuestionIndex < totalQuestions-1?"Next":"Submit"}
+            {currentQuestionIndex < totalQuestions - 1 ? "Next" : "Submit"}
           </button>
         </div>
       </div>
