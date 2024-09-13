@@ -7,7 +7,7 @@ const ThankYouScreen=({resetSurvey})=>
       resetSurvey();
     }, 5000);
     return () => clearTimeout(timer);
-  },[resetSurvey]);
+  },[]);
 
   return (
     <div className="flex items-center justify-center h-screen bg-blue-200">
