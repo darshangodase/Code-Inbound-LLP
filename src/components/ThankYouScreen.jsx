@@ -6,7 +6,6 @@ const ThankYouScreen=({resetSurvey})=>
     const timer = setTimeout(()=>{
       resetSurvey();
     }, 5000);
-    return () => clearTimeout(timer);
   },[]);
 
   return (
