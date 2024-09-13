@@ -20,7 +20,7 @@ const WelcomeScreen=({startSurvey})=>
     <div className="flex items-center justify-center h-screen bg-blue-200">
       <div className="text-center">
         <h1 className="text-3xl mb-6">Welcome to the Survey!</h1>
-        <button className=" bg-blue-500 px-3 py-3 rounded-md" onClick={startSurvey}>Start Survey</button>
+        <button className=" bg-blue-500 px-3 py-3 rounded-lg" onClick={startSurvey}>Start Survey</button>
       </div>
     </div>
   );

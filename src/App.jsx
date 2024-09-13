@@ -6,8 +6,8 @@ import ThankYouScreen from "./components/ThankYouScreen";
 
 const App=()=>{
 
-    const [step,setStep]=useState("welcome");
-    const [showConfirmation,setShowConfirmation]=useState(false);
+    const[step,setStep]=useState("welcome");
+    const[showConfirmation,setShowConfirmation]=useState(false);
     
     const showConfirmationDialog=()=>setShowConfirmation(true);
 
@@ -26,10 +26,10 @@ const App=()=>{
     <div className="">
       {step==="welcome" && <WelcomeScreen startSurvey={startSurvey} />}
 
-      {step==="survey"&& (<SurveyForm goToThankYouScreen={goToThankYouScreen} showConfirmationDialog={showConfirmationDialog}/>)}
-      {step==="thankyou" && <ThankYouScreen resetSurvey={resetSurvey} />}
-
+      {step==="survey"&&(<SurveyForm showConfirmationDialog={showConfirmationDialog}/>)}
       {showConfirmation && (<ConfirmationDialog onConfirm={confirmSubmission} onCancel={cancelSubmission} />)}
+      {step==="thankyou"&& <ThankYouScreen resetSurvey={resetSurvey} />}
+
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 
-const SurveyForm = ({ showConfirmationDialog }) => {
+const SurveyForm=({showConfirmationDialog }) =>{
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   const [answers, setAnswers] = useState(() => {
     const savedAnswers = localStorage.getItem("surveyAnswers");
-    return savedAnswers ? JSON.parse(savedAnswers) : {};
+    return savedAnswers ? JSON.parse(savedAnswers):{};
   });
 
   const questions = [
@@ -41,18 +41,20 @@ const SurveyForm = ({ showConfirmationDialog }) => {
   const handleNext = () => {
     if (currentQuestionIndex < totalQuestions - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
+    } 
+    else {
       showConfirmationDialog();
     }
   };
 
-  const handlePrev = () => {
+  const handlePrev=() => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex(currentQuestionIndex - 1);
     }
   };
 
-  const handleAnswerChange = (questionId, answer) => {
+  const handleAnswerChange = (questionId, answer) => 
+    {
     const updatedAnswers = { ...answers, [questionId]: answer };
     setAnswers(updatedAnswers);
 
@@ -124,7 +126,7 @@ const SurveyForm = ({ showConfirmationDialog }) => {
             className="btn bg-pink-500 text-white px-4 py-2 rounded-lg"
             onClick={handleNext}
           >
-            {currentQuestionIndex < totalQuestions - 1 ? "Next" : "Submit"}
+            {currentQuestionIndex < totalQuestions-1?"Next":"Submit"}
           </button>
         </div>
       </div>
