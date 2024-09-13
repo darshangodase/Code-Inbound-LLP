@@ -7,22 +7,20 @@ import ThankYouScreen from "./components/ThankYouScreen";
 const App = () => {
   const [step, setStep] = useState("welcome");
   const [showConfirmation, setShowConfirmation] = useState(false);
-
+  
   const showConfirmationDialog = () => setShowConfirmation(true);
+  const cancelSubmission=()=>setShowConfirmation(false);
 
   const startSurvey = () => setStep("survey");
   const goToThankYouScreen = () => setStep("thankyou");
-  const resetSurvey = () => {
-    setStep("welcome");
-  };
+  const resetSurvey = () =>setStep("welcome");
 
-  const confirmSubmission = () => {
+  const confirmSubmission=()=> {
     setShowConfirmation(false);
     localStorage.setItem("COMPLETED", "true");
     goToThankYouScreen();
   };
 
-  const cancelSubmission = () => setShowConfirmation(false);
 
   return (
     <div className="">

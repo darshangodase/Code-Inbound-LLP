@@ -33,10 +33,10 @@ const SurveyForm = ({ showConfirmationDialog }) => {
       type: "text",
     },
   ];
-  const totalQuestions = questions.length;
+  const totalQuestions=questions.length;
   const[currentQuestionIndex, setCurrentQuestionIndex]=useState(0);
 
-  const [answers, setAnswers] = useState(() => {
+  const [answers, setAnswers]=useState(() => {
     const savedAnswers = localStorage.getItem("surveyAnswers");
     return savedAnswers ? JSON.parse(savedAnswers) : {};
   });

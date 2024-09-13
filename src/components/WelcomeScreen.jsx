@@ -3,16 +3,18 @@ import { generateSessionId } from "../utils/session";
 
 const WelcomeScreen=({startSurvey})=> 
 {
+
   useEffect(()=>{
     const sessionid=localStorage.getItem('sessionId');
     if(!sessionid) 
     {
       const newSessionid=generateSessionId();
       localStorage.setItem('sessionId',newSessionid);
-      console.log("New session ID created:",newSessionid);
+      console.log("session id:",newSessionid);
     } 
-    else {
-      console.log("Existing session ID found:",sessionid);
+    else 
+    {
+      console.log("prev session id:",sessionid);
     }
   },[]);
 

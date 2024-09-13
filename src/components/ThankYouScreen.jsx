@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 const ThankYouScreen=({resetSurvey})=>
 {
   useEffect(()=>{
-    const timer = setTimeout(()=>{
+    setTimeout(()=>{
       resetSurvey();
     }, 5000);
   },[]);
